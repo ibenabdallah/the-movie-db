@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">The Movie DB</string>
+
+    <string name="now_playing">En cours</string>
+    <string name="top_rated">Top notés</string>
+    <string name="popular">Populaire</string>
+    <string name="upcoming">A venir</string>
+    <string name="language">Langue :</string>
+    <string name="release_date">Date de sortie :</string>
+    <string name="vote">votes</string>
+    <string name="overview">Synopsis</string>
+    <string name="budget">Budget :</string>
+    <string name="revenue">Revenu :</string>
+    <string name="companies">Sociétés de production</string>
+</resources>
