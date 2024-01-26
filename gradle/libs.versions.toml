@@ -7,8 +7,8 @@ android-targetSdk = "34"
 
 androidx-activityCompose = "1.8.2"
 compose = "1.6.0"
-compose-plugin = "1.5.11"
-kotlin = "1.9.21"
+compose-plugin = "1.6.0-beta01"
+kotlin = "1.9.22"
 kotlin-serialization = "1.6.2"
 coroutines = "1.7.3"
 precompose = "1.5.10"
@@ -35,9 +35,7 @@ compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 # For navigation
 precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
 
-# For resource access
-moko-classpath = { module = "dev.icerock.moko:resources-generator", version.ref = "moko" }
-moko-resource-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko" }
+# MVVM Compose
 moko-mvvm-compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "moko-mvvm" }
 
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }

@@ -34,12 +34,14 @@ import coil3.compose.LocalPlatformContext
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.size.Size
-import com.ibenabdallah.themoviedb.MR
 import data.AppConfig
 import data.model.details.MovieDetails
-import dev.icerock.moko.resources.compose.stringResource
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
+import themoviedb.composeapp.generated.resources.Res
 import ui.utils.RatingBar
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun UIMovieDetails(movie: MovieDetails) {
     val imageState = rememberAsyncImagePainter(
@@ -148,34 +150,34 @@ fun UIMovieDetails(movie: MovieDetails) {
                 }
 
                 Text(
-                    text = stringResource(MR.strings.language) + " " + movie.originalLanguage,
+                    text = stringResource(Res.string.language) + " " + movie.originalLanguage,
                     modifier = Modifier.padding(top = 10.dp)
                 )
 
                 Text(
-                    text = stringResource(MR.strings.release_date) + " " + movie.releaseDate,
+                    text = stringResource(Res.string.release_date) + " " + movie.releaseDate,
                     modifier = Modifier.padding(top = 10.dp)
                 )
 
                 Text(
-                    text = movie.voteCount.toString() + " " + stringResource(MR.strings.vote),
+                    text = movie.voteCount.toString() + " " + stringResource(Res.string.vote),
                     modifier = Modifier.padding(top = 10.dp)
                 )
 
                 Text(
-                    text = stringResource(MR.strings.budget) + " " + movie.budget.toString(),
+                    text = stringResource(Res.string.budget) + " " + movie.budget.toString(),
                     modifier = Modifier.padding(top = 10.dp)
                 )
 
                 Text(
-                    text = stringResource(MR.strings.revenue) + " " + movie.revenue.toString(),
+                    text = stringResource(Res.string.revenue) + " " + movie.revenue.toString(),
                     modifier = Modifier.padding(top = 10.dp)
                 )
             }
         }
 
         Text(
-            text = stringResource(MR.strings.overview),
+            text = stringResource(Res.string.overview),
             fontSize = 19.sp,
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier.padding(start = 16.dp, top = 24.dp)
@@ -188,7 +190,7 @@ fun UIMovieDetails(movie: MovieDetails) {
         )
 
         Text(
-            text = stringResource(MR.strings.companies),
+            text = stringResource(Res.string.companies),
             modifier = Modifier.padding(start = 16.dp, top = 24.dp, end = 16.dp)
         )
 
