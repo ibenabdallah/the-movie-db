@@ -35,7 +35,6 @@ The Movie DB app using [The Movie DB](https://www.themoviedb.org) built with Kot
 - [Ktor Client](https://ktor.io/docs/welcome.html) - Ktor includes a multiplatform asynchronous HTTP client, which allows you to make requests and handle responses.
 - [Koin](https://github.com/InsertKoinIO/koin) - Koin a pragmatic lightweight dependency injection framework for Kotlin & Kotlin Multiplatform.
 - [Coil3](https://github.com/coil-kt/coil/tree/3.x) - An image loading library for Android backed by Kotlin Coroutines for Kotlin Multiplatform.
-- [Moko Resources](https://github.com/icerockdev/moko-resources) - Resources access for mobile (android & ios) Kotlin Multiplatform development.
 - [Moko mvvm](https://github.com/icerockdev/moko-mvvm) - Model-View-ViewModel architecture components for mobile (android & ios) Kotlin Multiplatform development.
 - [Paging](https://github.com/cashapp/multiplatform-paging) - A library that adds additional Kotlin Multiplatform targets to AndroidX Paging, and provides UI components to use Paging on iOS.
 - [Kermit](https://github.com/touchlab/Kermit) - Kermit is a Kotlin Multiplatform centralized logging utility
