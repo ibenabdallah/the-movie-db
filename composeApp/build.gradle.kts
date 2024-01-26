@@ -8,7 +8,6 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotliniSerialization)
     alias(libs.plugins.buildKonfig)
-    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -48,7 +47,6 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
-            @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
             implementation(compose.materialIconsExtended)
 
@@ -58,8 +56,7 @@ kotlin {
             // Navigation
             implementation(libs.precompose)
 
-            // Access to resources
-            implementation(libs.moko.resource.compose)
+            // MVVM
             implementation(libs.moko.mvvm.compose)
 
             // Coil3
@@ -99,10 +96,6 @@ kotlin {
             }
         }
     }
-}
-
-multiplatformResources {
-    multiplatformResourcesPackage = "com.ibenabdallah.themoviedb"
 }
 
 android {

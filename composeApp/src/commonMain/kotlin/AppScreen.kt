@@ -7,8 +7,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.ibenabdallah.themoviedb.MR
-import dev.icerock.moko.resources.compose.stringResource
 import di.appModule
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.navigation.NavOptions
@@ -17,11 +15,15 @@ import moe.tlaster.precompose.navigation.rememberNavigator
 import navigation.Navigation
 import navigation.NavigationScreen
 import navigation.currentRoute
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.KoinApplication
+import themoviedb.composeapp.generated.resources.Res
 import ui.theme.TheMovieDBTheme
 import ui.utils.AppBarWithArrow
 
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun AppScreen() {
     PreComposeApp {
@@ -38,7 +40,7 @@ fun AppScreen() {
                     },
                     topBar = {
                         AppBarWithArrow(
-                            title = stringResource(MR.strings.app_name),
+                            title = stringResource(Res.string.app_name),
                             isBackEnable = isBottomNavigation(navigator).not()
                         ) {
                             navigator.goBack()
@@ -80,13 +82,14 @@ fun BottomNavigation(navigator: Navigator) {
     }
 }
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun getTitle(screen: NavigationScreen): String {
     return when (screen) {
-        NavigationScreen.NowPlaying -> stringResource(MR.strings.now_playing)
-        NavigationScreen.Popular -> stringResource(MR.strings.popular)
-        NavigationScreen.TopRated -> stringResource(MR.strings.top_rated)
-        NavigationScreen.Upcoming -> stringResource(MR.strings.upcoming)
+        NavigationScreen.NowPlaying -> stringResource(Res.string.now_playing)
+        NavigationScreen.Popular -> stringResource(Res.string.popular)
+        NavigationScreen.TopRated -> stringResource(Res.string.top_rated)
+        NavigationScreen.Upcoming -> stringResource(Res.string.upcoming)
         else -> ""
     }
 }
