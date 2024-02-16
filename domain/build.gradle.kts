@@ -1,9 +1,7 @@
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsCompose)
-    alias(libs.plugins.kotliniSerialization)
+    alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
@@ -23,43 +21,18 @@ kotlin {
 
     sourceSets {
 
-        androidMain {
-            dependsOn(commonMain.get())
-
-            dependencies {
-                implementation(libs.compose.ui.tooling.preview)
-                implementation(libs.androidx.activity.compose)
-
-                // koin DI
-                implementation(libs.koin.android)
-            }
+        androidMain.dependencies {
+            // koin DI
+            implementation(libs.koin.android)
         }
 
         commonMain.dependencies {
-            implementation(projects.domain)
 
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.materialIconsExtended)
+            api(projects.data)
+            api(projects.model)
 
             // Paging
             implementation(libs.paging.compose)
-
-            // Navigation
-            implementation(libs.precompose)
-
-            // MVVM
-            implementation(libs.moko.mvvm.compose)
-
-            // Coil3
-            implementation(libs.coil.compose)
-            implementation(libs.coil.network)
-
-            implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.kotlin.serialization)
 
             // DI
             implementation(libs.koin.core)
@@ -90,11 +63,8 @@ android {
     sourceSets["main"].res.srcDirs("src/androidMain/res")
 
     defaultConfig {
-        applicationId = "com.ibenabdallah.themoviedb"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "0.1.0"
     }
     packaging {
         resources {
@@ -109,10 +79,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-    dependencies {
-        debugImplementation(libs.compose.ui.tooling)
-        implementation(libs.kotlinx.coroutines.android)
     }
 }
 

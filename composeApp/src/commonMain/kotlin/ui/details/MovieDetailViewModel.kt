@@ -1,22 +1,34 @@
 package ui.details
 
-import data.DataState
-import data.model.details.MovieDetails
+import ui.asResult
+import ui.Result
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import domain.DetailsMovieUseCase
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import model.MovieDetails
+import ui.MovieUiState
 
-class MovieDetailViewModel (private val useCase : DetailsMovieUseCase): ViewModel() {
+class MovieDetailViewModel(private val useCase: DetailsMovieUseCase) : ViewModel() {
 
-    val movieDetail = MutableStateFlow<DataState<MovieDetails>>(DataState.Loading)
+    fun movieDetail(movieId: Int): StateFlow<MovieUiState<out MovieDetails>> {
 
-    fun movieDetail(movieId: Int) {
-        viewModelScope.launch {
-            useCase.invoke(movieId).collectLatest {
-                movieDetail.value = it
+        return useCase.invoke(movieId)
+            .asResult()
+            .map { followedMovieDetailsResult ->
+                when (followedMovieDetailsResult) {
+                    is Result.Success -> MovieUiState.Success(followedMovieDetailsResult.data)
+                    is Result.Loading -> MovieUiState.Loading
+                    is Result.Error -> MovieUiState.Failed(followedMovieDetailsResult.exception)
+                }
             }
-        }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = MovieUiState.Loading
+            )
+
     }
 }
