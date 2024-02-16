@@ -1,9 +1,11 @@
 package ui.details
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.State
+import model.MovieDetails
+import moe.tlaster.precompose.flow.collectAsStateWithLifecycle
 import org.koin.compose.koinInject
+import ui.MovieUiState
 import ui.UIStateView
 
 
@@ -12,10 +14,7 @@ fun DetailsScreen(movieId: Int) {
 
     val detailsViewModel = koinInject<MovieDetailViewModel>()
 
-    LaunchedEffect(1) {
-        detailsViewModel.movieDetail(movieId)
-    }
-    val state = detailsViewModel.movieDetail.collectAsState().value
+    val state: State<MovieUiState<out MovieDetails>> = detailsViewModel.movieDetail(movieId).collectAsStateWithLifecycle()
 
     UIStateView(state) {
         UIMovieDetails(it)

@@ -35,7 +35,7 @@ import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.size.Size
 import data.AppConfig
-import data.model.details.MovieDetails
+import model.MovieDetails
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import themoviedb.composeapp.generated.resources.Res
