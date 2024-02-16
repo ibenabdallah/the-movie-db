@@ -25,7 +25,7 @@ import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.size.Size
 import data.AppConfig
-import data.model.details.ProductionCompany
+import model.ProductionCompany
 
 @Composable
 fun UICompaniesItem(item: ProductionCompany) {

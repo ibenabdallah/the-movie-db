@@ -33,13 +33,13 @@ import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.size.Size
 import data.AppConfig
-import data.model.MovieItem
+import data.model.NetworkMovieItem
 import ui.common.shimmerBrush
 import ui.utils.RatingBar
 
 
 @Composable
-fun MovieItem(movie: MovieItem, onMovieClick: (MovieItem) -> Unit) {
+fun MovieItem(movie: NetworkMovieItem, onMovieClick: (NetworkMovieItem) -> Unit) {
 
     val imageState = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalPlatformContext.current)

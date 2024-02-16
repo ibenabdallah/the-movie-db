@@ -17,7 +17,8 @@ import app.cash.paging.LoadState
 import app.cash.paging.LoadStateError
 import app.cash.paging.LoadStateLoading
 import app.cash.paging.LoadStateNotLoading
-import data.DataState
+import androidx.compose.runtime.State
+import data.ResponseError
 
 @Composable
 fun UIStateView(
@@ -36,15 +37,15 @@ fun UIStateView(
 
 @Composable
 fun <T> UIStateView(
-    state: DataState<T>,
+    state: State<MovieUiState<out T>>,
     content: @Composable (T) -> Unit,
 ) {
-    when (state) {
-        is DataState.Error -> UIFailure(state)
+    when (val value = state.value) {
+        is MovieUiState.Failed -> UIFailure(value.exception)
 
-        is DataState.Loading -> UILoading()
+        is MovieUiState.Loading -> UILoading()
 
-        is DataState.Success -> content(state.data)
+        is MovieUiState.Success -> content(value.data)
     }
 }
 
@@ -69,7 +70,7 @@ private fun UIFailure(failure: LoadStateError) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = failure.error.message.orEmpty(),
+                text = (failure.error as ResponseError).status_message,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.secondary,
@@ -80,7 +81,7 @@ private fun UIFailure(failure: LoadStateError) {
 }
 
 @Composable
-private fun UIFailure(failure: DataState.Error) {
+private fun UIFailure(error: Throwable) {
     Box(modifier = Modifier.fillMaxSize().padding(16.dp), contentAlignment = Alignment.Center) {
         Column(
             modifier = Modifier
@@ -89,7 +90,7 @@ private fun UIFailure(failure: DataState.Error) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = failure.exception.message.orEmpty(),
+                text = (error as ResponseError).status_message,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.secondary,

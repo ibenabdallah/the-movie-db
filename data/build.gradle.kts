@@ -1,9 +1,11 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotliniSerialization)
+    alias(libs.plugins.buildKonfig)
 }
 
 kotlin {
@@ -27,8 +29,8 @@ kotlin {
             dependsOn(commonMain.get())
 
             dependencies {
-                implementation(libs.compose.ui.tooling.preview)
-                implementation(libs.androidx.activity.compose)
+                // ktor network
+                implementation(libs.ktor.client.okhttp)
 
                 // koin DI
                 implementation(libs.koin.android)
@@ -36,28 +38,17 @@ kotlin {
         }
 
         commonMain.dependencies {
-            implementation(projects.domain)
-
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.materialIconsExtended)
-
+            implementation(projects.model)
             // Paging
             implementation(libs.paging.compose)
 
-            // Navigation
-            implementation(libs.precompose)
+            // Ktor network
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.serialization)
+            implementation(libs.ktor.negotiation)
 
-            // MVVM
-            implementation(libs.moko.mvvm.compose)
-
-            // Coil3
-            implementation(libs.coil.compose)
-            implementation(libs.coil.network)
-
+            // Coroutines
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlin.serialization)
 
@@ -78,6 +69,11 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+
+            dependencies {
+                // ktor network
+                implementation(libs.ktor.client.darwin)
+            }
         }
     }
 }
@@ -90,11 +86,8 @@ android {
     sourceSets["main"].res.srcDirs("src/androidMain/res")
 
     defaultConfig {
-        applicationId = "com.ibenabdallah.themoviedb"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "0.1.0"
     }
     packaging {
         resources {
@@ -113,6 +106,18 @@ android {
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
         implementation(libs.kotlinx.coroutines.android)
+    }
+}
+
+buildkonfig {
+    packageName = "com.ibenabdallah.themoviedb"
+
+    defaultConfigs {
+        buildConfigField(
+            STRING,
+            "API_KEY",
+            gradleLocalProperties(rootDir).getProperty("api_key") ?: ""
+        )
     }
 }
 
