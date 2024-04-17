@@ -1,16 +1,16 @@
 [versions]
-agp = "8.2.2"
+agp = "8.3.2"
 
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
 android-wear-minSdk = "26"
 
-androidx-activity-compose = "1.8.2"
-compose-plugin = "1.6.0"
+androidx-activity-compose = "1.9.0"
+compose-plugin = "1.6.2"
 kotlin = "1.9.22"
 kotlin-serialization = "1.6.2"
-coroutines = "1.7.3"
+coroutines = "1.8.0"
 precompose = "1.5.10"
 moko-mvvm = "0.16.1"
 coil = "3.0.0-alpha02"
@@ -21,12 +21,12 @@ paging-compose = "3.3.0-alpha02-0.4.0"
 kermit-logger = "2.0.2"
 build-konfig = "0.15.1"
 play-services-wearable = "18.1.0"
-compose-bom = "2024.02.01"
-wear-compose-material3 = "1.0.0-alpha18"
-wear-compose-foundation = "1.3.0"
+compose-bom = "2024.04.01"
+wear-compose-material3 = "1.0.0-alpha21"
+wear-compose-foundation = "1.3.1"
 core-splashscreen = "1.0.1"
 wearToolingPreview = "1.0.0"
-core-ktx = "1.12.0"
+core-ktx = "1.13.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
@@ -34,7 +34,7 @@ espresso-core = "3.5.1"
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
 
 
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }

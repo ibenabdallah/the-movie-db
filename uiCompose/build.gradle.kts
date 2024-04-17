@@ -60,7 +60,7 @@ kotlin {
             implementation(libs.coil.network)
 
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.kotlin.serialization)
+            implementation(libs.kotlinx.serialization)
 
             // DI
             implementation(libs.koin.core)

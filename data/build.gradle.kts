@@ -50,7 +50,7 @@ kotlin {
 
             // Coroutines
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.kotlin.serialization)
+            implementation(libs.kotlinx.serialization)
 
             // DI
             implementation(libs.koin.core)
@@ -87,7 +87,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
     }
     packaging {
         resources {
@@ -116,7 +115,7 @@ buildkonfig {
         buildConfigField(
             STRING,
             "API_KEY",
-            gradleLocalProperties(rootDir).getProperty("api_key") ?: ""
+            gradleLocalProperties(rootDir, providers).getProperty("api_key") ?: ""
         )
     }
 }
