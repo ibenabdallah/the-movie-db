@@ -15,7 +15,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "uiCompose"
+            baseName = "UiCompose"
             isStatic = true
         }
     }
