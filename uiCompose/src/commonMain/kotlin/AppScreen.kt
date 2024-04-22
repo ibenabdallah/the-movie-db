@@ -6,15 +6,17 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import di.appModule
-import moe.tlaster.precompose.PreComposeApp
-import moe.tlaster.precompose.navigation.NavOptions
-import moe.tlaster.precompose.navigation.Navigator
-import moe.tlaster.precompose.navigation.rememberNavigator
 import navigation.Navigation
 import navigation.NavigationScreen
-import navigation.currentRoute
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.KoinApplication
@@ -24,86 +26,83 @@ import ui.theme.TheMovieDBTheme
 import ui.utils.AppBarWithArrow
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-@Preview
 @OptIn(ExperimentalResourceApi::class)
+@Preview
 @Composable
 fun AppScreen() {
-    PreComposeApp {
-        KoinApplication(application = {
-            modules(appModule)
-        }) {
 
-            val navigator = rememberNavigator()
+    val navController: NavHostController = rememberNavController()
 
-            TheMovieDBTheme {
-                Scaffold(
-                    bottomBar = {
-                        BottomNavigation(navigator)
-                    },
-                    topBar = {
-                        AppBarWithArrow(
-                            title = stringResource(Res.string.app_name),
-                            isBackEnable = isBottomNavigation(navigator).not()
-                        ) {
-                            navigator.goBack()
-                        }
+    KoinApplication(application = {
+        modules(appModule)
+    }) {
+        TheMovieDBTheme {
+            Scaffold(
+                bottomBar = {
+                    BottomNavigation(navController)
+                },
+                topBar = {
+                    AppBarWithArrow(
+                        title = stringResource(Res.string.app_name),
+                        isBackEnable = isBottomNavigation(navController).not()
+                    ) {
+                        navController.navigateUp()
                     }
+                }
 
-                ) { paddingValues ->
-                    Box(modifier = Modifier.padding(paddingValues = paddingValues)) {
-                        Navigation(navigator)
-                    }
+            ) { paddingValues ->
+                Box(modifier = Modifier.padding(paddingValues = paddingValues)) {
+                    Navigation(navController)
                 }
             }
         }
     }
 }
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
-fun BottomNavigation(navigator: Navigator) {
-    if (isBottomNavigation(navigator)) {
+fun BottomNavigation(navController: NavHostController) {
+
+    if (isBottomNavigation(navController)) {
+
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStackEntry?.destination
+
         NavigationBar {
             listOf(
                 NavigationScreen.NowPlaying,
                 NavigationScreen.TopRated,
                 NavigationScreen.Popular,
-                NavigationScreen.Upcoming,
-            ).forEach {
+                NavigationScreen.Upcoming
+            ).forEach { screen ->
+                val title = stringResource(screen.resourceId)
                 NavigationBarItem(
-                    label = { Text(text = getTitle(it), maxLines = 1) },
-                    selected = it.route == currentRoute(navigator),
+                    label = { Text(text = title, maxLines = 1) },
+                    selected = currentDestination?.hierarchy?.any { it.route == screen.name } == true,
                     icon = {
-                        Icon(imageVector = it.navIcon, contentDescription = it.title)
+                        Icon(imageVector = screen.navIcon, contentDescription = title)
                     },
                     onClick = {
-                        navigator.navigate(it.route, NavOptions(launchSingleTop = true))
+                        navController.navigate(screen.name) { launchSingleTop = true }
                     }
                 )
             }
         }
     }
 }
-
-@OptIn(ExperimentalResourceApi::class)
 @Composable
-fun getTitle(screen: NavigationScreen): String {
-    return when (screen) {
-        NavigationScreen.NowPlaying -> stringResource(Res.string.now_playing)
-        NavigationScreen.Popular -> stringResource(Res.string.popular)
-        NavigationScreen.TopRated -> stringResource(Res.string.top_rated)
-        NavigationScreen.Upcoming -> stringResource(Res.string.upcoming)
-        else -> ""
+fun isBottomNavigation(navController: NavHostController): Boolean {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+
+    return when (currentDestination?.route) {
+        NavigationScreen.NowPlaying.name,
+        NavigationScreen.Popular.name,
+        NavigationScreen.TopRated.name,
+        NavigationScreen.Upcoming.name,
+        -> true
+
+        else -> false
     }
-}
-
-@Composable
-fun isBottomNavigation(navigator: Navigator): Boolean = when (currentRoute(navigator)) {
-    NavigationScreen.NowPlaying.route,
-    NavigationScreen.Popular.route,
-    NavigationScreen.TopRated.route,
-    NavigationScreen.Upcoming.route,
-    -> true
-
-    else -> false
 }
 

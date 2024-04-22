@@ -1,8 +1,9 @@
 package ui.details
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import ui.asResult
 import ui.Result
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import domain.DetailsMovieUseCase
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

@@ -7,12 +7,12 @@ android-targetSdk = "34"
 android-wear-minSdk = "26"
 
 androidx-activity-compose = "1.9.0"
-compose-plugin = "1.6.2"
+compose-plugin = "1.6.10-beta01"
 kotlin = "1.9.22"
-kotlin-serialization = "1.6.2"
+kotlin-serialization = "1.6.3"
 coroutines = "1.8.0"
-precompose = "1.5.10"
-moko-mvvm = "0.16.1"
+viewmodel-compose = "2.8.0-alpha01"
+navigation-compose = "2.8.0-alpha01"
 coil = "3.0.0-alpha02"
 ktor = "2.3.7"
 koin = "3.5.3"
@@ -44,10 +44,10 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 
 # For navigation
-precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
 
 # MVVM Compose
-moko-mvvm-compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "moko-mvvm" }
+viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "viewmodel-compose" }
 
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
@@ -96,6 +96,6 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotliniSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 buildKonfig = { id = "com.codingfeline.buildkonfig", version.ref = "build-konfig" }

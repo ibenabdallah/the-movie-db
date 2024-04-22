@@ -6,23 +6,25 @@ import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Timeline
 import androidx.compose.ui.graphics.vector.ImageVector
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.StringResource
+import themoviedb.uicompose.generated.resources.Res
+import themoviedb.uicompose.generated.resources.*
 
-sealed class NavigationScreen(
-    val route: String,
-    val title: String = "app",
+@OptIn(ExperimentalResourceApi::class)
+enum class NavigationScreen(
     val navIcon: ImageVector = Icons.Filled.Home,
+    val resourceId: StringResource = Res.string.app_name,
     val objectName: String = "",
     val objectPath: String = "",
 ) {
-    data object MovieDetail :
-        NavigationScreen("movie_detail_screen", objectName = "id", objectPath = "/{id}")
+    MovieDetail(objectName = "movieId", objectPath = "/{movieId}"),
 
-    data object NowPlaying : NavigationScreen("now_playing_screen", navIcon = Icons.Filled.Home)
+    NowPlaying(resourceId = Res.string.now_playing, navIcon = Icons.Filled.Home),
 
-    data object Popular : NavigationScreen("popular_screen", navIcon = Icons.Filled.Timeline)
+    Popular(resourceId = Res.string.popular, navIcon = Icons.Filled.Timeline),
 
-    data object TopRated : NavigationScreen("top_rated_screen", navIcon = Icons.Filled.Star)
+    TopRated(resourceId = Res.string.top_rated, navIcon = Icons.Filled.Star),
 
-    data object Upcoming :
-        NavigationScreen("upcoming_screen", navIcon = Icons.Filled.KeyboardArrowDown)
+    Upcoming(resourceId = Res.string.upcoming, navIcon = Icons.Filled.KeyboardArrowDown),
 }

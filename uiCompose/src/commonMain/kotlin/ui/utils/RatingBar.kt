@@ -3,8 +3,8 @@ package ui.utils
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.StarHalf
 import androidx.compose.material.icons.rounded.Star
-import androidx.compose.material.icons.rounded.StarHalf
 import androidx.compose.material.icons.rounded.StarOutline
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
@@ -36,7 +36,7 @@ fun RatingBar(
         if (halfStar) {
             Icon(
                 modifier = starsModifier,
-                imageVector = Icons.Rounded.StarHalf,
+                imageVector = Icons.AutoMirrored.Rounded.StarHalf,
                 contentDescription = null,
                 tint = starsColor
             )

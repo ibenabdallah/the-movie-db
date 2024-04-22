@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
-    alias(libs.plugins.kotliniSerialization)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -22,17 +22,13 @@ kotlin {
 
     sourceSets {
 
-        androidMain {
-            dependsOn(commonMain.get())
-
-            dependencies {
+        androidMain.dependencies {
                 implementation(libs.compose.ui.tooling.preview)
                 implementation(libs.androidx.activity.compose)
                 implementation(compose.uiTooling)
 
                 // koin DI
                 implementation(libs.koin.android)
-            }
         }
 
         commonMain.dependencies {
@@ -50,10 +46,10 @@ kotlin {
             implementation(libs.paging.compose)
 
             // Navigation
-            implementation(libs.precompose)
+            implementation(libs.navigation.compose)
 
             // MVVM
-            implementation(libs.moko.mvvm.compose)
+            implementation(libs.viewmodel.compose)
 
             // Coil3
             implementation(libs.coil.compose)
@@ -71,7 +67,7 @@ kotlin {
 
         }
 
-        val iosX64Main by getting
+        /*val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
@@ -79,7 +75,7 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-        }
+        }*/
     }
 }
 

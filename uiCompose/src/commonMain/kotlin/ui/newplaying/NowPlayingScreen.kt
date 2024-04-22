@@ -9,8 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import app.cash.paging.compose.collectAsLazyPagingItems
-import moe.tlaster.precompose.navigation.Navigator
+import co.touchlab.kermit.Logger
 import navigation.NavigationScreen
 import org.koin.compose.koinInject
 import ui.MovieItem
@@ -18,7 +19,7 @@ import ui.UIStateView
 
 
 @Composable
-fun NowPlayingScreen(navigator: Navigator) {
+fun NowPlayingScreen(navController: NavHostController) {
 
     val viewModel = koinInject<NowPlayingViewModel>()
 
@@ -35,7 +36,7 @@ fun NowPlayingScreen(navigator: Navigator) {
             items(state.itemCount) { index ->
                 val item = state[index]
                 MovieItem(movie = item!!) {
-                    navigator.navigate(NavigationScreen.MovieDetail.route.plus("/${item.id}"))
+                    navController.navigate(NavigationScreen.MovieDetail.name.plus("/${item.id}"))
                 }
             }
         }

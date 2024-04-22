@@ -1,10 +1,13 @@
 package navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import moe.tlaster.precompose.navigation.NavHost
-import moe.tlaster.precompose.navigation.Navigator
-import moe.tlaster.precompose.navigation.path
+import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import ui.details.DetailsScreen
 import ui.newplaying.NowPlayingScreen
 import ui.popular.PopularScreen
@@ -12,32 +15,33 @@ import ui.toprated.TopRatedScreen
 import ui.upcoming.UpcomingScreen
 
 @Composable
-fun Navigation(navigator: Navigator) {
+fun Navigation(navController: NavHostController) {
     NavHost(
-        navigator = navigator,
-        initialRoute = NavigationScreen.NowPlaying.route,
+        navController = navController,
+        startDestination = NavigationScreen.NowPlaying.name,
     ) {
-        scene(route = NavigationScreen.NowPlaying.route) {
-            NowPlayingScreen(navigator)
+        composable(route = NavigationScreen.NowPlaying.name) {
+            NowPlayingScreen(navController)
         }
-        scene(route = NavigationScreen.Popular.route) {
-            PopularScreen(navigator)
+        composable(route = NavigationScreen.Popular.name) {
+            PopularScreen(navController)
         }
-        scene(route = NavigationScreen.TopRated.route) {
-            TopRatedScreen(navigator)
+        composable(route = NavigationScreen.TopRated.name) {
+            TopRatedScreen(navController)
         }
-        scene(route = NavigationScreen.Upcoming.route) {
-            UpcomingScreen(navigator)
+        composable(route = NavigationScreen.Upcoming.name) {
+            UpcomingScreen(navController)
         }
-        scene(route = NavigationScreen.MovieDetail.route.plus(NavigationScreen.MovieDetail.objectPath)) { backStackEntry ->
-            backStackEntry.path<Int>(NavigationScreen.MovieDetail.objectName)?.let { movieId ->
-                DetailsScreen(movieId)
-            }
+        composable(
+            route = NavigationScreen.MovieDetail.name.plus(NavigationScreen.MovieDetail.objectPath),
+            arguments = listOf(navArgument(NavigationScreen.MovieDetail.objectName) {
+                type = NavType.IntType
+            })
+        ) { backStackEntry ->
+            backStackEntry.arguments?.getInt(NavigationScreen.MovieDetail.objectName)
+                ?.let { movieId ->
+                    DetailsScreen(movieId)
+                }
         }
     }
-}
-
-@Composable
-fun currentRoute(navigator: Navigator): String? {
-    return navigator.currentEntry.collectAsState(null).value?.route?.route
 }
