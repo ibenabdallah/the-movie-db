@@ -1,19 +1,18 @@
 [versions]
-agp = "8.2.2"
+agp = "8.3.2"
 
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
+android-wear-minSdk = "26"
 
-androidx-activityCompose = "1.8.2"
-compose = "1.6.0"
-compose-plugin = "1.6.0-beta01"
+androidx-activity-compose = "1.9.0"
+compose-plugin = "1.6.10-beta01"
 kotlin = "1.9.22"
-kotlin-serialization = "1.6.2"
-coroutines = "1.7.3"
-precompose = "1.5.10"
-moko = "0.23.0"
-moko-mvvm = "0.16.1"
+kotlin-serialization = "1.6.3"
+coroutines = "1.8.0"
+viewmodel-compose = "2.8.0-alpha01"
+navigation-compose = "2.8.0-alpha01"
 coil = "3.0.0-alpha02"
 ktor = "2.3.7"
 koin = "3.5.3"
@@ -21,22 +20,34 @@ koin-compose = "1.1.2"
 paging-compose = "3.3.0-alpha02-0.4.0"
 kermit-logger = "2.0.2"
 build-konfig = "0.15.1"
+play-services-wearable = "18.1.0"
+compose-bom = "2024.04.01"
+wear-compose-material3 = "1.0.0-alpha21"
+wear-compose-foundation = "1.3.1"
+core-splashscreen = "1.0.1"
+wearToolingPreview = "1.0.0"
+core-ktx = "1.13.0"
+junit = "4.13.2"
+androidx-test-ext-junit = "1.1.5"
+espresso-core = "3.5.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
 
 
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 
 # For navigation
-precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
 
 # MVVM Compose
-moko-mvvm-compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "moko-mvvm" }
+viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "viewmodel-compose" }
 
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
@@ -63,6 +74,19 @@ paging-compose = { module = "app.cash.paging:paging-compose-common", version.ref
 
 kermit-logger = { module = "co.touchlab:kermit", version.ref = "kermit-logger" }
 
+play-services-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "play-services-wearable" }
+
+wear-compose-material3 = { group = "androidx.wear.compose", name = "compose-material3", version.ref = "wear-compose-material3" }
+wear-compose-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "wear-compose-foundation" }
+wear-tooling-preview = { group = "androidx.wear", name = "wear-tooling-preview", version.ref = "wearToolingPreview" }
+core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
+
+ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 
 #[bundles]
 #bundlesName = ["first-lib", "seconds-lib", ect]
@@ -70,7 +94,8 @@ kermit-logger = { module = "co.touchlab:kermit", version.ref = "kermit-logger" }
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotliniSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 buildKonfig = { id = "com.codingfeline.buildkonfig", version.ref = "build-konfig" }

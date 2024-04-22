@@ -18,8 +18,9 @@ dependencyResolutionManagement {
         mavenLocal()
     }
 }
-
-include(":composeApp")
+include(":androidApp")
+include(":uiCompose")
 include(":domain")
 include(":data")
 include(":model")
+include(":wearOS")

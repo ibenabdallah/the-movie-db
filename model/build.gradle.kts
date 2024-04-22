@@ -14,7 +14,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "ComposeApp"
+            baseName = "Model"
             isStatic = true
         }
     }
@@ -39,7 +39,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
     }
     packaging {
         resources {

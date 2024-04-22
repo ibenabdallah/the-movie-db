@@ -4,7 +4,7 @@ import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotliniSerialization)
+    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.buildKonfig)
 }
 
@@ -18,23 +18,20 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "ComposeApp"
+            baseName = "Data"
             isStatic = true
         }
     }
 
     sourceSets {
 
-        androidMain {
-            dependsOn(commonMain.get())
-
-            dependencies {
+        androidMain.dependencies {
                 // ktor network
                 implementation(libs.ktor.client.okhttp)
 
                 // koin DI
                 implementation(libs.koin.android)
-            }
+
         }
 
         commonMain.dependencies {
@@ -50,7 +47,7 @@ kotlin {
 
             // Coroutines
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.kotlin.serialization)
+            implementation(libs.kotlinx.serialization)
 
             // DI
             implementation(libs.koin.core)
@@ -61,19 +58,9 @@ kotlin {
 
         }
 
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain.get())
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
-
-            dependencies {
+        iosMain.dependencies {
                 // ktor network
                 implementation(libs.ktor.client.darwin)
-            }
         }
     }
 }
@@ -87,7 +74,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
     }
     packaging {
         resources {
@@ -116,7 +102,7 @@ buildkonfig {
         buildConfigField(
             STRING,
             "API_KEY",
-            gradleLocalProperties(rootDir).getProperty("api_key") ?: ""
+            gradleLocalProperties(rootDir, providers).getProperty("api_key") ?: ""
         )
     }
 }
