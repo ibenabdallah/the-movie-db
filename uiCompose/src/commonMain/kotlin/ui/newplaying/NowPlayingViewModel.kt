@@ -1,9 +1,9 @@
 package ui.newplaying
 
 
+import androidx.lifecycle.ViewModel
 import androidx.paging.PagingData
 import data.model.NetworkMovieItem
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import domain.AllNowPlayingMovieUseCase
 import kotlinx.coroutines.flow.Flow
 

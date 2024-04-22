@@ -1,6 +1,6 @@
 package di
 
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
+import androidx.lifecycle.ViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.definition.Definition
 import org.koin.core.definition.KoinDefinition

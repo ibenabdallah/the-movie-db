@@ -1,8 +1,8 @@
 package ui.upcoming
 
+import androidx.lifecycle.ViewModel
 import androidx.paging.PagingData
 import data.model.NetworkMovieItem
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import domain.AllUpcomingMovieUseCase
 import kotlinx.coroutines.flow.Flow
 

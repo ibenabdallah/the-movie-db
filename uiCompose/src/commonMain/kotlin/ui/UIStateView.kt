@@ -53,7 +53,7 @@ fun <T> UIStateView(
 private fun UILoading() {
     Box(modifier = Modifier.fillMaxSize().padding(16.dp), contentAlignment = Alignment.Center) {
         CircularProgressIndicator(
-            progress = 0.75f,
+            progress = { 0.75f },
             modifier = Modifier.align(Alignment.Center),
             color = MaterialTheme.colorScheme.secondary
         )

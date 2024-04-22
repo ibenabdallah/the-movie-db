@@ -76,7 +76,7 @@ dependencies {
     implementation(libs.paging.compose)
 
     // MVVM
-    implementation(libs.moko.mvvm.compose)
+    implementation(libs.viewmodel.compose)
 
     // Coil3
     implementation(libs.coil.compose)
