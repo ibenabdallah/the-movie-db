@@ -1,4 +1,4 @@
-package domain.State
+package domain.state
 
 /**
  * Data state for processing api response Loading, Success and Error

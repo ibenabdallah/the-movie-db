@@ -1,32 +1,32 @@
 [versions]
-agp = "8.3.2"
+agp = "8.4.0"
 
-android-compileSdk = "34"
-android-minSdk = "24"
-android-targetSdk = "34"
-android-wear-minSdk = "26"
+android-compileSdk  = "34" #Android-14
+android-targetSdk   = "34" #Android-14
+android-minSdk      = "24" #Android-7
+android-wear-minSdk = "26" #Android-8
 
 androidx-activity-compose = "1.9.0"
-compose-plugin = "1.6.10-beta01"
-kotlin = "1.9.22"
+compose-plugin = "1.6.10-rc01"
+kotlin = "2.0.0-RC2"
 kotlin-serialization = "1.6.3"
 coroutines = "1.8.0"
-viewmodel-compose = "2.8.0-alpha01"
-navigation-compose = "2.8.0-alpha01"
-coil = "3.0.0-alpha02"
-ktor = "2.3.7"
+viewmodel-compose = "2.8.0-rc01"
+navigation-compose = "2.7.0-alpha04"
+coil = "3.0.0-alpha06"
+ktor = "2.3.8"
 koin = "3.5.3"
 koin-compose = "1.1.2"
-paging-compose = "3.3.0-alpha02-0.4.0"
+paging-compose = "3.3.0-alpha02-0.5.1"
 kermit-logger = "2.0.2"
 build-konfig = "0.15.1"
 play-services-wearable = "18.1.0"
-compose-bom = "2024.04.01"
-wear-compose-material3 = "1.0.0-alpha21"
+compose-bom = "2024.05.00"
+wear-compose-material3 = "1.0.0-alpha22"
 wear-compose-foundation = "1.3.1"
 core-splashscreen = "1.0.1"
 wearToolingPreview = "1.0.0"
-core-ktx = "1.13.0"
+core-ktx = "1.13.1"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
@@ -53,16 +53,16 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 
 # coil3
-coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
-coil-network = { module = "io.coil-kt.coil3:coil-network", version.ref = "coil" }
+coil-compose      = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref = "coil" }
 
 # ktor
-ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-core    = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
-ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
-ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
-ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-ktor-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-okhttp  = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-darwin  = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+ktor-serialization  = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-negotiation    = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 
 #koin
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
@@ -92,10 +92,11 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 #bundlesName = ["first-lib", "seconds-lib", ect]
 
 [plugins]
-androidApplication = { id = "com.android.application", version.ref = "agp" }
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
-kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+androidApplication  = { id = "com.android.application", version.ref = "agp" }
+androidLibrary      = { id = "com.android.library", version.ref = "agp" }
+kotlinAndroid       = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+compose-compiler    = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
-buildKonfig = { id = "com.codingfeline.buildkonfig", version.ref = "build-konfig" }
+jetbrainsCompose    = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+buildKonfig         = { id = "com.codingfeline.buildkonfig", version.ref = "build-konfig" }

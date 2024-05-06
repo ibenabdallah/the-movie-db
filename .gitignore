@@ -6,6 +6,8 @@
 .gradle/
 build/
 
+.kotlin/
+
 # Local configuration file (sdk path, etc)
 local.properties
 

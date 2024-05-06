@@ -80,7 +80,7 @@ dependencies {
 
     // Coil3
     implementation(libs.coil.compose)
-    implementation(libs.coil.network)
+    implementation(libs.coil.network.ktor)
 
 
     androidTestImplementation(platform(libs.compose.bom))

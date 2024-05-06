@@ -8,8 +8,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -17,7 +15,6 @@ import androidx.navigation.compose.rememberNavController
 import di.appModule
 import navigation.Navigation
 import navigation.NavigationScreen
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.KoinApplication
 import themoviedb.uicompose.generated.resources.Res
@@ -26,7 +23,6 @@ import ui.theme.TheMovieDBTheme
 import ui.utils.AppBarWithArrow
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-@OptIn(ExperimentalResourceApi::class)
 @Preview
 @Composable
 fun AppScreen() {
@@ -59,7 +55,6 @@ fun AppScreen() {
     }
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun BottomNavigation(navController: NavHostController) {
 
