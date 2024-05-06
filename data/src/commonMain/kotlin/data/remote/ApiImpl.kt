@@ -7,6 +7,7 @@ import data.model.NetworkMovies
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.client.statement.HttpResponse
 
 internal class ApiImpl(private val client: HttpClient) : ApiInterface {
 
@@ -34,9 +35,9 @@ internal class ApiImpl(private val client: HttpClient) : ApiInterface {
         }.body()
     }
 
-    override suspend fun movieDetail(movieId: Int): NetworkMovieDetails {
+    override suspend fun movieDetail(movieId: Int): HttpResponse {
         return client.get {
             movieDetail(movieId)
-        }.body()
+        }
     }
 }

@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -40,12 +41,10 @@ android {
     kotlinOptions {
         jvmTarget = "18"
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
-    }
+}
+
+composeCompiler {
+    enableStrongSkippingMode = true
 }
 
 dependencies {

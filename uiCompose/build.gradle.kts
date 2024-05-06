@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinSerialization)
 }
 
@@ -53,7 +54,7 @@ kotlin {
 
             // Coil3
             implementation(libs.coil.compose)
-            implementation(libs.coil.network)
+            implementation(libs.coil.network.ktor)
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.serialization)
@@ -67,6 +68,10 @@ kotlin {
 
         }
     }
+}
+
+composeCompiler {
+    enableStrongSkippingMode = true
 }
 
 android {
