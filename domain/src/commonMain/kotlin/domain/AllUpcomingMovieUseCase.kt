@@ -1,8 +1,9 @@
 package domain
 
-import data.model.NetworkMovieItem
-import domain.paging.PaginatedContent
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
+import model.MovieItem
 
 interface AllUpcomingMovieUseCase {
-    operator fun invoke(): PaginatedContent<NetworkMovieItem>
+    operator fun invoke(): Flow<PagingData<MovieItem>>
 }

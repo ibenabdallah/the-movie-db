@@ -1,7 +1,8 @@
 package data.repository
 
-import data.model.details.NetworkMovieDetails
+import data.model.details.MovieDetailsEntity
+import data.remote.DataResult
 
 interface MovieDetailsRepository {
-    suspend fun movieDetail(movieId: Int): NetworkMovieDetails
+    suspend fun movieDetail(movieId: Int): DataResult<MovieDetailsEntity>
 }

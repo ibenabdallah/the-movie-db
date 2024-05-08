@@ -1,16 +1,16 @@
 package data.repository
 
 import androidx.paging.PagingSource
-import data.model.NetworkMovieItem
+import data.model.MovieEntity
 
 interface MovieRepository {
 
-    fun nowPlayingMovie(): PagingSource<Int, NetworkMovieItem>
+    fun nowPlayingMovie(): PagingSource<Int, MovieEntity>
 
-    fun topRatedMovie(): PagingSource<Int, NetworkMovieItem>
+    fun topRatedMovie(): PagingSource<Int, MovieEntity>
 
-    fun popularMovie(): PagingSource<Int, NetworkMovieItem>
+    fun popularMovie(): PagingSource<Int, MovieEntity>
 
-    fun upComingMovie(): PagingSource<Int, NetworkMovieItem>
+    fun upComingMovie(): PagingSource<Int, MovieEntity>
 
 }

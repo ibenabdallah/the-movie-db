@@ -24,12 +24,12 @@ kotlin {
     sourceSets {
 
         androidMain.dependencies {
-                implementation(libs.compose.ui.tooling.preview)
-                implementation(libs.androidx.activity.compose)
-                implementation(compose.uiTooling)
+            implementation(libs.compose.ui.tooling.preview)
+            implementation(libs.androidx.activity.compose)
+            implementation(compose.uiTooling)
 
-                // koin DI
-                implementation(libs.koin.android)
+            // koin DI
+            implementation(libs.koin.android)
         }
 
         commonMain.dependencies {

@@ -1,4 +1,3 @@
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
@@ -7,7 +6,7 @@ plugins {
 kotlin {
 
     androidTarget()
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -28,7 +27,7 @@ kotlin {
 
         commonMain.dependencies {
 
-            api(projects.data)
+            implementation(projects.data)
             api(projects.model)
 
             // Paging

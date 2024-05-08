@@ -24,7 +24,6 @@ import coil3.compose.LocalPlatformContext
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.size.Size
-import data.AppConfig
 import model.ProductionCompany
 
 @Composable

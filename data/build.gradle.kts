@@ -11,7 +11,7 @@ plugins {
 kotlin {
 
     androidTarget()
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -26,16 +26,16 @@ kotlin {
     sourceSets {
 
         androidMain.dependencies {
-                // ktor network
-                implementation(libs.ktor.client.okhttp)
+            // ktor network
+            implementation(libs.ktor.client.okhttp)
 
-                // koin DI
-                implementation(libs.koin.android)
+            // koin DI
+            implementation(libs.koin.android)
 
         }
 
         commonMain.dependencies {
-            implementation(projects.model)
+
             // Paging
             implementation(libs.paging.compose)
 
@@ -59,8 +59,8 @@ kotlin {
         }
 
         iosMain.dependencies {
-                // ktor network
-                implementation(libs.ktor.client.darwin)
+            // ktor network
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
