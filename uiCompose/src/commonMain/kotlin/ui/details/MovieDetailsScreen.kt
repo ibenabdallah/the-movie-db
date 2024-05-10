@@ -5,7 +5,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import model.MovieDetails
 import org.koin.compose.koinInject
-import ui.MovieUiState
+import ui.UiState
 import ui.UIStateView
 
 
@@ -14,7 +14,7 @@ fun DetailsScreen(movieId: Int) {
 
     val detailsViewModel = koinInject<MovieDetailViewModel>()
 
-    val state: State<MovieUiState<out MovieDetails>> = detailsViewModel.movieDetail(movieId).collectAsState()
+    val state: State<UiState<out MovieDetails>> = detailsViewModel.movieDetail(movieId).collectAsState()
 
     UIStateView(state) {
         UIMovieDetails(it)

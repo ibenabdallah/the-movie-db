@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class NetworkMovieItem(
+data class MovieEntity(
     val id: Int,
     val adult: Boolean,
     @SerialName("backdrop_path")

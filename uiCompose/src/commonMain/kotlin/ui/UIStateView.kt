@@ -18,7 +18,7 @@ import app.cash.paging.LoadStateError
 import app.cash.paging.LoadStateLoading
 import app.cash.paging.LoadStateNotLoading
 import androidx.compose.runtime.State
-import data.ResponseError
+import result.UiError
 
 @Composable
 fun UIStateView(
@@ -37,15 +37,15 @@ fun UIStateView(
 
 @Composable
 fun <T> UIStateView(
-    state: State<MovieUiState<out T>>,
+    state: State<UiState<out T>>,
     content: @Composable (T) -> Unit,
 ) {
     when (val value = state.value) {
-        is MovieUiState.Failed -> UIFailure(value.exception)
+        is UiState.Failure -> UIFailure(value.exception)
 
-        is MovieUiState.Loading -> UILoading()
+        is UiState.Loading -> UILoading()
 
-        is MovieUiState.Success -> content(value.data)
+        is UiState.Success -> content(value.data)
     }
 }
 
@@ -69,7 +69,7 @@ private fun UIFailure(failure: LoadStateError) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = (failure.error as ResponseError).status_message,
+                text = (failure.error as UiError).message,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.secondary,
@@ -89,7 +89,7 @@ private fun UIFailure(error: Throwable) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = (error as ResponseError).status_message,
+                text = (error as UiError).message,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.secondary,

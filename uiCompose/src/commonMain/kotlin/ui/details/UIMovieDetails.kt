@@ -1,5 +1,6 @@
 package ui.details
 
+import AppConfig
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -34,15 +35,18 @@ import coil3.compose.LocalPlatformContext
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.size.Size
-import data.AppConfig
 import model.MovieDetails
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import themoviedb.uicompose.generated.resources.Res
-import themoviedb.uicompose.generated.resources.*
+import themoviedb.uicompose.generated.resources.budget
+import themoviedb.uicompose.generated.resources.companies
+import themoviedb.uicompose.generated.resources.language
+import themoviedb.uicompose.generated.resources.overview
+import themoviedb.uicompose.generated.resources.release_date
+import themoviedb.uicompose.generated.resources.revenue
+import themoviedb.uicompose.generated.resources.vote
 import ui.utils.RatingBar
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun UIMovieDetails(movie: MovieDetails) {
     val imageState = rememberAsyncImagePainter(

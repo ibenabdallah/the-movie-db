@@ -40,9 +40,8 @@ import androidx.wear.tooling.preview.devices.WearDevices
 import app.cash.paging.compose.collectAsLazyPagingItems
 import coil3.compose.rememberAsyncImagePainter
 import data.AppConfig
-import data.model.NetworkMovieItem
+import data.model.MovieEntity
 import di.appModule
-import model.MovieItem
 import org.koin.compose.KoinApplication
 import org.koin.compose.koinInject
 import ui.UIStateView
@@ -104,7 +103,7 @@ fun WearAppContent() {
 @Composable
 fun MovieItem(
     modifier: Modifier = Modifier,
-    movie: NetworkMovieItem, onClick: (NetworkMovieItem) -> Unit,
+    movie: MovieEntity, onClick: (MovieEntity) -> Unit,
 ) {
 
     Card(

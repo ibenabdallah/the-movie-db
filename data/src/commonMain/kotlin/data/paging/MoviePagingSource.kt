@@ -8,13 +8,13 @@ import app.cash.paging.PagingSourceLoadResultError
 import app.cash.paging.PagingSourceLoadResultPage
 import app.cash.paging.PagingState
 import data.ResponseError
-import data.model.NetworkMovies
+import data.model.MoviesEntity
 import io.ktor.client.call.body
 import io.ktor.client.plugins.ClientRequestException
 import kotlinx.serialization.json.Json
 
 internal class MoviePagingSource<T : Any>(
-    private val fetch: suspend (page: Int) -> NetworkMovies<T>,
+    private val fetch: suspend (page: Int) -> MoviesEntity<T>,
 ) : PagingSource<Int, T>() {
 
     private var currentPage: Int = 0

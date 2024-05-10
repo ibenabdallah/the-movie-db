@@ -44,12 +44,16 @@ The Movie DB app using [The Movie DB](https://www.themoviedb.org) built with Kot
 - [Kermit](https://github.com/touchlab/Kermit) - Kermit is a Kotlin Multiplatform centralized logging utility
 - [BuildKonfig](https://github.com/yshrsmz/BuildKonfig) - Supports embedding values from gradle file.
 
-:information_source: Note, I used some libs which are not yet in stable version, it remains as a sample project.
+ℹ️ Please note, I used some libraries which are not yet in stable version, this remains as an example of a project to gain expertise on new technologies.
 
 ## Architecture :toolbox:
 
-- Clean Architecture 
-- MVVM Architecture
+The app architecture has three layers : a [data layer](https://developer.android.com/jetpack/guide/data-layer), a [domain layer](https://developer.android.com/jetpack/guide/domain-layer) and a [UI layer](https://developer.android.com/jetpack/guide/ui-layer).
+
+I followed the [Guide to app architecture](https://developer.android.com/topic/architecture) by google.
+
+Also I applied the [SOLID principles](https://fr.wikipedia.org/wiki/SOLID_(informatique))
+
 
 ## Project structure :bow_and_arrow:
 
@@ -71,7 +75,7 @@ The project follows the standard Kotlin Multiplatform structure, with the follow
 * [`androidApp`](/androidApp) Contains the android-specific configuration files.
 
 * [`iosApp`](/iosApp) Contains the iOS-specific configuration files.
-* 
+
 * [`wearOS`](/wearOS) Contains the wearOS-specific code ui and specific configuration files.
 
 * [`build.gradle.kts`](/composeApp/build.gradle.kts) The main Gradle build script for the project.

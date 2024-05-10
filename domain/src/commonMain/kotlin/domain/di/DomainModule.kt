@@ -8,23 +8,27 @@ import domain.AllTopRatedMovieUseCase
 import domain.AllTopRatedMovieUseCaseImpl
 import domain.AllUpcomingMovieUseCase
 import domain.AllUpcomingMovieUseCaseImpl
-import domain.DetailsMovieUseCase
-import domain.DetailsMovieUseCaseImpl
-import domain.mapper.DetailsMovieMapper
-import domain.mapper.DetailsMovieMapperImpl
+import domain.MovieDetailsUseCase
+import domain.MovieDetailsUseCaseImpl
+import domain.mapper.MovieDetailsMapper
+import domain.mapper.MovieDetailsMapperImpl
+import domain.mapper.MovieMapper
+import domain.mapper.MovieMapperImpl
 import org.koin.dsl.module
 
 val domainModule = module {
 
-    single<DetailsMovieMapper> { DetailsMovieMapperImpl() }
+    single<MovieMapper> { MovieMapperImpl() }
 
-    single<AllNowPlayingMovieUseCase> { AllNowPlayingMovieUseCaseImpl(get()) }
+    single<MovieDetailsMapper> { MovieDetailsMapperImpl() }
 
-    single<AllTopRatedMovieUseCase> { AllTopRatedMovieUseCaseImpl(get()) }
+    single<AllNowPlayingMovieUseCase> { AllNowPlayingMovieUseCaseImpl(get(), get()) }
 
-    single<AllPopularMovieUseCase> { AllPopularMovieUseCaseImpl(get()) }
+    single<AllTopRatedMovieUseCase> { AllTopRatedMovieUseCaseImpl(get(), get()) }
 
-    single<AllUpcomingMovieUseCase> { AllUpcomingMovieUseCaseImpl(get()) }
+    single<AllPopularMovieUseCase> { AllPopularMovieUseCaseImpl(get(), get()) }
 
-    single<DetailsMovieUseCase> { DetailsMovieUseCaseImpl(get(), get()) }
+    single<AllUpcomingMovieUseCase> { AllUpcomingMovieUseCaseImpl(get(), get()) }
+
+    single<MovieDetailsUseCase> { MovieDetailsUseCaseImpl(get(), get()) }
 }

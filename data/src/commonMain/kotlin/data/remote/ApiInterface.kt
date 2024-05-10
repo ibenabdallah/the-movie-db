@@ -1,19 +1,18 @@
 package data.remote
 
-import data.model.NetworkMovies
-import data.model.details.NetworkMovieDetails
-import data.model.NetworkMovieItem
-import io.ktor.client.statement.HttpResponse
+import data.model.MoviesEntity
+import data.model.MovieEntity
+import data.model.details.MovieDetailsEntity
 
 internal interface ApiInterface {
 
-    suspend fun nowPlayingMovieList(page: Int): NetworkMovies<NetworkMovieItem>
+    suspend fun nowPlayingMovieList(page: Int): MoviesEntity<MovieEntity>
 
-    suspend fun topRatedMovieList(page: Int): NetworkMovies<NetworkMovieItem>
+    suspend fun topRatedMovieList(page: Int): MoviesEntity<MovieEntity>
 
-    suspend fun popularMovieList(page: Int): NetworkMovies<NetworkMovieItem>
+    suspend fun popularMovieList(page: Int): MoviesEntity<MovieEntity>
 
-    suspend fun upcomingMovieList(page: Int): NetworkMovies<NetworkMovieItem>
+    suspend fun upcomingMovieList(page: Int): MoviesEntity<MovieEntity>
 
-    suspend fun movieDetail(movieId: Int): HttpResponse
+    suspend fun movieDetail(movieId: Int): DataResult<MovieDetailsEntity>
 }

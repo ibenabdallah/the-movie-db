@@ -1,12 +1,12 @@
 package data.repository
 
-import data.model.details.NetworkMovieDetails
+import data.model.details.MovieDetailsEntity
 import data.remote.ApiInterface
-import io.ktor.client.call.body
+import data.remote.DataResult
 
 internal class MovieDetailsRepositoryImpl(private val api: ApiInterface) : MovieDetailsRepository {
 
-    override suspend fun movieDetail(movieId: Int): NetworkMovieDetails {
-        return api.movieDetail(movieId).body()
+    override suspend fun movieDetail(movieId: Int): DataResult<MovieDetailsEntity> {
+        return api.movieDetail(movieId)
     }
 }
