@@ -12,14 +12,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import app.cash.paging.compose.collectAsLazyPagingItems
 import navigation.NavigationScreen
-import org.koin.compose.koinInject
+import org.koin.compose.viewmodel.koinViewModel
 import ui.MovieItem
 import ui.UIStateView
 
 @Composable
 fun UpcomingScreen(navController: NavHostController) {
 
-    val viewModel = koinInject<UpcomingViewModel>()
+    val viewModel = koinViewModel<UpcomingViewModel>()
 
     val state = remember { viewModel.getUpcoming() }.collectAsLazyPagingItems()
 

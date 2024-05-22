@@ -13,6 +13,7 @@ import androidx.navigation.NavHostController
 import app.cash.paging.compose.collectAsLazyPagingItems
 import navigation.NavigationScreen
 import org.koin.compose.koinInject
+import org.koin.compose.viewmodel.koinViewModel
 import ui.MovieItem
 import ui.UIStateView
 
@@ -20,7 +21,7 @@ import ui.UIStateView
 @Composable
 fun TopRatedScreen(navController: NavHostController) {
 
-    val viewModel = koinInject<TopRatedViewModel>()
+    val viewModel = koinViewModel<TopRatedViewModel>()
 
     val state = remember { viewModel.getTopRated() }.collectAsLazyPagingItems()
 
