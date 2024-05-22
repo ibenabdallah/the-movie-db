@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import app.cash.paging.compose.collectAsLazyPagingItems
 import navigation.NavigationScreen
-import org.koin.compose.koinInject
+import org.koin.compose.viewmodel.koinViewModel
 import ui.MovieItem
 import ui.UIStateView
 
@@ -20,7 +20,7 @@ import ui.UIStateView
 @Composable
 fun PopularScreen(navController: NavHostController) {
 
-    val viewModel = koinInject<PopularViewModel>()
+    val viewModel = koinViewModel<PopularViewModel>()
 
     val state = remember { viewModel.getPopular() }.collectAsLazyPagingItems()
 

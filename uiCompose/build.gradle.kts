@@ -62,6 +62,7 @@ kotlin {
             // DI
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
 
             // Logger
             implementation(libs.kermit.logger)

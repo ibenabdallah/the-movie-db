@@ -11,9 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import app.cash.paging.compose.collectAsLazyPagingItems
-import co.touchlab.kermit.Logger
 import navigation.NavigationScreen
-import org.koin.compose.koinInject
+import org.koin.compose.viewmodel.koinViewModel
 import ui.MovieItem
 import ui.UIStateView
 
@@ -21,7 +20,7 @@ import ui.UIStateView
 @Composable
 fun NowPlayingScreen(navController: NavHostController) {
 
-    val viewModel = koinInject<NowPlayingViewModel>()
+    val viewModel = koinViewModel<NowPlayingViewModel>()
 
     val state = remember { viewModel.getNowPlaying() }.collectAsLazyPagingItems()
 
