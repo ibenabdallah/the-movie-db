@@ -68,8 +68,12 @@ private fun UIFailure(failure: LoadStateError) {
                 .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            val error = when (failure.error) {
+                is UiError -> failure.error.message.toString()
+                else -> failure.error.message.toString()
+            }
             Text(
-                text = (failure.error as UiError).message,
+                text = error,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.secondary,

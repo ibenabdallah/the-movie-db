@@ -12,7 +12,7 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import kotlinx.serialization.json.Json
 
-internal class ApiImpl(private val client: HttpClient) : ApiInterface {
+    internal class ApiImpl(private val client: HttpClient) : ApiInterface {
 
     override suspend fun nowPlayingMovieList(page: Int): MoviesEntity<MovieEntity> {
         return client.get {

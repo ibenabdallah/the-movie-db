@@ -13,10 +13,12 @@ import androidx.navigation.NavHostController
 import app.cash.paging.compose.collectAsLazyPagingItems
 import navigation.NavigationScreen
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 import ui.MovieItem
 import ui.UIStateView
 
 
+@OptIn(KoinExperimentalAPI::class)
 @Composable
 fun NowPlayingScreen(navController: NavHostController) {
 
