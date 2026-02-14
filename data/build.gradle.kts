@@ -1,16 +1,23 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
+import org.gradle.internal.impldep.com.jcraft.jsch.ConfigRepository.defaultConfig
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinMultiplatformLibrary)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.buildKonfig)
 }
 
 kotlin {
 
-    androidTarget()
+    android {
+        namespace = "com.ibenabdallah.themoviedb.data"
+        compileSdk { version = release(libs.versions.android.compileSdk.get().toInt()) }
+        minSdk { version = release(libs.versions.android.minSdk.get().toInt()) }
+
+    }
 
     listOf(
         iosX64(),
@@ -65,7 +72,7 @@ kotlin {
     }
 }
 
-android {
+/*android {
     namespace = "com.ibenabdallah.themoviedb"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
@@ -93,7 +100,7 @@ android {
         debugImplementation(libs.compose.ui.tooling)
         implementation(libs.kotlinx.coroutines.android)
     }
-}
+}*/
 
 buildkonfig {
     packageName = "com.ibenabdallah.themoviedb"

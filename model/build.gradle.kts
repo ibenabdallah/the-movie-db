@@ -1,12 +1,16 @@
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinMultiplatformLibrary)
 }
 
 kotlin {
 
-    androidTarget()
+    android {
+        namespace = "com.ibenabdallah.themoviedb.model"
+        compileSdk { version = release(libs.versions.android.compileSdk.get().toInt()) }
+        minSdk { version = release(libs.versions.android.minSdk.get().toInt()) }
+    }
     
     listOf(
         iosX64(),
@@ -30,7 +34,7 @@ kotlin {
     }
 }
 
-android {
+/*android {
     namespace = "com.ibenabdallah.themoviedb"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
@@ -54,6 +58,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-}
+}*/
 
 

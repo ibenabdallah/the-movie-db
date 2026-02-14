@@ -1,6 +1,8 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinMultiplatformLibrary)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinSerialization)
@@ -8,7 +10,16 @@ plugins {
 
 kotlin {
 
-    androidTarget()
+    androidLibrary {
+        namespace = "com.ibenabdallah.themoviedb.uicompose"
+        compileSdk { version = release(libs.versions.android.compileSdk.get().toInt()) }
+        minSdk { version = release(libs.versions.android.minSdk.get().toInt()) }
+        androidResources.enable = true
+
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+    }
 
     listOf(
         iosX64(),
@@ -75,7 +86,7 @@ composeCompiler {
     enableStrongSkippingMode = true
 }
 
-android {
+/*android {
     namespace = "com.ibenabdallah.themoviedb"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
@@ -104,6 +115,6 @@ android {
         debugImplementation(libs.compose.ui.tooling)
         implementation(libs.kotlinx.coroutines.android)
     }
-}
+}*/
 
 
